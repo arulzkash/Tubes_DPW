@@ -8,6 +8,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <head>
         <meta charset="utf-8">
         <title>SultanTopUp</title>
+        <script>
+        function validateForm() {
+            var nama = document.forms["myForm"]["namauser"].value;
+            var bayar = document.forms["myForm"]["voucherbayar"].value;
+            var metod = document.forms["myForm"]["vouchermetod"].value;
+            var uang = document.forms["myForm"]["uanguser"].value;
+
+            if (nama == "" || bayar == "" || metod == "" || uang == "") {
+                alert("Harap isi semua field!");
+                return false;
+            }
+        }
+    </script>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Construction Company Website Template" name="keywords">
         <meta content="Construction Company Website Template" name="description">
@@ -97,8 +110,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="index.php" class="nav-item nav-link active">Home</a>
-                                <a href="#games" class="nav-item nav-link">Games</a>
+                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link active">Home</a>
+                                <!-- <a href="<?php //echo site_url('c_voucher/index');?>" class="nav-item nav-link">Games</a> -->
                                 <a href="#team" class="nav-item nav-link">Team</a>
                                 <a href="#contact" class="nav-item nav-link">Contact</a>
                                 <div class="nav-item dropdown">
@@ -119,8 +132,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="contact wow fadeInUp" id="contact">
                 <div class="container">
                     <div class="section-header text-center">
-                        <p>Contact</p>
-                        <h2>Get In Touch For Any Query</h2>
+                        <p>Form Pembelian</p>
+                        <h2>Voucher <?= $data->nama_game ?></h2>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -133,7 +146,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="contact-item">
                                     <div class="contact-text">
-                                        <h2><?= $data->foto_game ?></h2>
+                                    <img src="<?=base_url('asset/img/'.$data->foto_game)?>" style="display: block;border-radius: 5%;border-color:white;margin-right:30px; width:300px;" border="2px" >
                                     </div>
                                 </div>
                                 <div class="contact-item">
@@ -149,44 +162,36 @@ Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kre
                             <div class="contact-form">
                                 <div id="success"></div>
                                 
-                                    <div class="control-group">
-                                    <div class="container">
-                                        <div class="section-header text-center">
-                                            <p>Games</p>
-                                            <h2>Pilih Voucher</h2>
-                                        </div>
-                                        <form action="<?php echo site_url('C_Voucher/tampiltransaksi'); ?>" method="post" >
-                                            <div class="row">
-                                                <?php foreach ($voucher as $vc) : ?>
-                                                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                                                    
-                                                    <!-- <input type="text" name="Kai"> -->
-                                                    <button type="submit" name="submit" value="<?=$vc->id_voucher?>"><?=$vc->nama_voucher ?></button>
-                                                                
-                                                </div>
-                                                <?php endforeach; ?>
-                                                
-
-                                            </div>
-                                        </form>
-                                    </div>
-                                    
-                                    <!-- <div class="control-group">
-                                        <input type="email" class="form-control" name="email_contact" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" name="subject_contact" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <textarea class="form-control" name="message_contact" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                        <p class="help-block text-danger"></p>
-                                    </div>
-                                    <div>
-                                        <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
-                                    </div> -->
                                 
+                                <div class="container">
+                                    <form name="myForm" action="<?php echo site_url('C_Voucher/tampiltransaksi'); ?>" onsubmit="return validateForm()" method="post" >
+                                        <h4>Masukkan Nama</h4>
+                                            <input class="form-control" type="text" id="namauser" name="namauser" placeholder="nama..">
+                                            <p class="help-block text-danger"></p>
+                                            <h4>Pilih Voucher</h4>
+                                            <!-- <div class="form-control"> -->
+                                                <select name="voucherbayar">
+                                                    <?php foreach ($voucher as $v) : ?>
+                                                        <option value="<?=$v->id_voucher?>"><?=$v->nama_voucher ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <!-- </div> -->
+                                                <p class="help-block text-danger"></p>
+                                                <h4>Pilih Metode Pembayaran</h4>
+                                                <select name="vouchermetod">
+                                                    <?php foreach ($ko as $i) : ?>
+                                                        <option value="<?=$i->id_pembayaran?>"><?=$i->nama_pembayaran ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                    <p class="help-block text-danger"></p>
+                                                    <h4>Masukkan Jumlah Uang Anda</h4>
+                                                    <input class="form-control" type="number" id="uanguser" name="uanguser" placeholder="nominal..">
+                                                    <p class="help-block text-danger"></p>
+                                                    <div>
+                                        <button class="btn" type="submit" id="submit">Submit</button>
+                                    </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -265,4 +270,3 @@ Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kre
         <script src="js/main.js"></script>
     </body>
 </html>
-

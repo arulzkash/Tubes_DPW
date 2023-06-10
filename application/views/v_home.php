@@ -97,8 +97,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="index.php" class="nav-item nav-link active">Home</a>
-                                <a href="#games" class="nav-item nav-link">Games</a>
+                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link active">Home</a>
+                                <!-- <a href="#games" class="nav-item nav-link">Games</a> -->
                                 <a href="#team" class="nav-item nav-link">Team</a>
                                 <a href="#contact" class="nav-item nav-link">Contact</a>
                                 <div class="nav-item dropdown">
@@ -128,24 +128,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="carousel-item active">
                         <img src="<?= base_url('asset/img/Screenshot_2.png') ?>" alt="Carousel Image">
                         <div class="carousel-caption">
-                            <p class="animated fadeInRight">WE ARE INDIE GAME</p>
-                            <h1 class="animated fadeInLeft">DEVELOPERS FROM INDONESIA.</h1>
+                            <p class="animated fadeInRight">TOKO TOP UP</p>
+                            <h1 class="animated fadeInLeft">TERPERCAYA SE-INDONESIA</h1>
                         </div>
                     </div>
 
                     <div class="carousel-item">
                         <img src="<?= base_url('asset/img/new.gif') ?>" alt="Carousel Image">
                         <div class="carousel-caption">
-                            <p class="animated fadeInRight">WE MAKE THE GAMES</p>
-                            <h1 class="animated fadeInLeft">WE'D LOVE TO PLAY!</h1>
+                            <p class="animated fadeInRight">AMAN, CEPAT</p>
+                            <h1 class="animated fadeInLeft">DAN HEMAT TENTUNYA</h1>
                         </div>
                     </div>
 
                     <div class="carousel-item">
                         <img src="img/Screenshot_4.png" alt="Carousel Image">
                         <div class="carousel-caption">
-                            <p class="animated fadeInRight">A GROWING FAMILY OF PASSIONATE</p>
-                            <h1 class="animated fadeInLeft">AND FUN GAME DEVELOPERS.</h1>
+                            <p class="animated fadeInRight">TOP UP SESERING MUNGKIN</p>
+                            <h1 class="animated fadeInLeft">PAKAI SULTANTOPUP</h1>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="blog-item">
                                 <div class="blog-img">
-                                    <img src="<?= base_url('asset/img/capsule_616x353.jpg') ?>" alt="Image">
+                                    <img src="<?= base_url('asset/img/'.$row->foto_game ) ?>" style="min-height: 235px; max-height: 235px; min-width: 290px; max-width: 290px" alt="Image">
                                 </div>
                                 <div class="blog-title">
                                     <h3><a href="<?php echo site_url('C_Voucher/tampilBayar/'.$row->id_game);?>"><?=$row->nama_game ?></a></h3>
