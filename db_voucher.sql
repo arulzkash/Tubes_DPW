@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Kashidota
+Source Server         : koneksi01
 Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : db_voucher
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2023-06-05 15:00:13
+Date: 2023-06-10 14:22:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,9 +28,9 @@ CREATE TABLE `t_game` (
 -- ----------------------------
 -- Records of t_game
 -- ----------------------------
-INSERT INTO `t_game` VALUES ('1', 'Point Blank', null);
-INSERT INTO `t_game` VALUES ('2', 'Mobile Legends', null);
-INSERT INTO `t_game` VALUES ('3', 'Clash Royale', null);
+INSERT INTO `t_game` VALUES ('1', 'Point Blank', 'KdUfwBmep0.jpg');
+INSERT INTO `t_game` VALUES ('2', 'Mobile Legends', 'Logo-Mobile-Legends.png');
+INSERT INTO `t_game` VALUES ('3', 'Clash Royale', 'cr.jpg');
 INSERT INTO `t_game` VALUES ('4', 'Free Fire', null);
 INSERT INTO `t_game` VALUES ('5', 'Pubg Mobile', null);
 INSERT INTO `t_game` VALUES ('6', 'FIFA Mobile', null);
@@ -44,14 +44,14 @@ DROP TABLE IF EXISTS `t_pembayaran`;
 CREATE TABLE `t_pembayaran` (
   `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
   `nama_pembayaran` varchar(50) DEFAULT NULL,
-  `input_pembayaran` int(11) DEFAULT NULL,
-  `foto_pembayaran` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_pembayaran`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_pembayaran
 -- ----------------------------
+INSERT INTO `t_pembayaran` VALUES ('1', 'BNI');
+INSERT INTO `t_pembayaran` VALUES ('2', 'BRI');
 
 -- ----------------------------
 -- Table structure for `t_struk`
@@ -81,11 +81,12 @@ CREATE TABLE `t_voucher` (
   PRIMARY KEY (`id_voucher`),
   KEY `fk_game_voucher` (`id_game`),
   CONSTRAINT `fk_game_voucher` FOREIGN KEY (`id_game`) REFERENCES `t_game` (`id_game`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of t_voucher
 -- ----------------------------
-INSERT INTO `t_voucher` VALUES ('1', '1200 PB Cash', '9500', '1');
-INSERT INTO `t_voucher` VALUES ('2', '2400 PB Cash', '21000', '1');
-INSERT INTO `t_voucher` VALUES ('3', '3600 PB Cash', '31000', '1');
+INSERT INTO `t_voucher` VALUES ('1', '1200 PB Cash', '10000', '1');
+INSERT INTO `t_voucher` VALUES ('2', '2400 PB Cash', '19500', '1');
+INSERT INTO `t_voucher` VALUES ('3', '3600 PB Cash', '28000', '1');
+INSERT INTO `t_voucher` VALUES ('4', '4800 PB Cash', '37000', '1');

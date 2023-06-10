@@ -164,7 +164,7 @@ Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kre
                                 
                                 
                                 <div class="container">
-                                    <form name="myForm" action="<?php echo site_url('C_Voucher/tampiltransaksi'); ?>" onsubmit="return validateForm()" method="post" >
+                                    <form name="myForm" action="<?php echo site_url('C_Voucher/bayar'); ?>" onsubmit="return validateForm()" method="post" >
                                         <h4>Masukkan Nama</h4>
                                             <input class="form-control" type="text" id="namauser" name="namauser" placeholder="nama..">
                                             <p class="help-block text-danger"></p>

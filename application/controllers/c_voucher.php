@@ -34,8 +34,9 @@ class C_Voucher extends CI_Controller {
 	$this->load->view('v_bayar', $temp);
 	}
 
-	public function tampilTransaksi()
+	public function bayar()
 {
+	
     $temp = $this->m_game->getAllBayar();
     
 	$data['ko'] = $temp;
