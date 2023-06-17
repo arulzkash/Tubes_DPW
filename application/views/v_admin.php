@@ -1,26 +1,8 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>SultanTopUp</title>
-        <script>
-        function validateForm() {
-            var nama = document.forms["myForm"]["namauser"].value;
-            var bayar = document.forms["myForm"]["voucherbayar"].value;
-            var metod = document.forms["myForm"]["vouchermetod"].value;
-            var uang = document.forms["myForm"]["uanguser"].value;
-
-            if (nama == "" || bayar == "" || metod == "" || uang == "") {
-                alert("Harap isi semua field!");
-                return false;
-            }
-        }
-    </script>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Construction Company Website Template" name="keywords">
         <meta content="Construction Company Website Template" name="description">
@@ -48,10 +30,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!--Custom Css -->
 		<link rel="stylesheet" href="<?= base_url('asset/css/style.css') ?>">
     </head>
-
-    <body>
-
     
+    <body>
         <div class="wrapper">
             <!-- Top Bar Start -->
             <div class="top-bar">
@@ -59,8 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-12">
                             <div class="logo">
-                                <a href="index.html">
-                                    <h2 style="font-size: 36px;">SultanTopUp</h2>
+                                <a href="index.php">
+                                    <h2 style="font-size: 36px; margin:auto;">SultanTopUp</h2>
                                     <!-- <img src="img/logo.jpg" alt="Logo"> -->
                                 </a>
                             </div>
@@ -97,8 +77,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <!-- Top Bar End -->
 
-	
-
             <!-- Nav Bar Start -->
             <div class="nav-bar">
                 <div class="container-fluid">
@@ -110,93 +88,189 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link active">Home</a>
-                                <a href="#team" class="nav-item nav-link">Team</a>
+                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link">Home</a>
                                 <a href="#contact" class="nav-item nav-link">Contact</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other</a>
-                                    <div class="dropdown-menu">
-                                        <a href="admin.php" class="dropdown-item">Admin Page</a>
-                                        <a href="job.php" class="dropdown-item">Job Vacancy</a>
-                                    </div>
-                                </div>
+                                <a href="#job" class="nav-item nav-link">Job Apply</a>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
             <!-- Nav Bar End -->
-
-            <!-- Contact Start -->
-            <div class="contact wow fadeInUp" id="contact">
-                <div class="container">
-                    <div class="section-header text-center">
-                        <p>Form Pembelian</p>
-                        <h2>Voucher <?= $data->nama_game ?></h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                        <h2><?= $data->nama_game ?></h2>
-                                        
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                    <img src="<?=base_url('asset/img/'.$data->foto_game)?>" style="display: block;border-radius: 5%;border-color:white;margin-right:30px; width:300px;" border="2px" >
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                        <p style="text-align: justify;">Dapatkan <?= $data->nama_game ?> hanya dalam beberapa detik! Pilih jumlah yang di inginkan, pilih metode pembayaran yang paling disukai, dan dapatkan kode voucher dalam hitungan detik. <br><br>
-
-Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kredivo, LinkAja, OVO, QRIS, ShopeePay, dan kartu kredit. Tanpa registrasi ataupun log-in!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="contact-form">
-                                <div id="success"></div>
-                                
-                                
-                                <div class="container">
-                                    <form name="myForm" action="<?php echo site_url('C_Voucher/bayar'); ?>" onsubmit="return validateForm()" method="post" >
-                                        <h4>Masukkan Nama</h4>
-                                            <input class="form-control" type="text" id="namauser" name="namauser" placeholder="nama..">
-                                            <p class="help-block text-danger"></p>
-                                            <h4>Pilih Voucher</h4>
-                                            <!-- <div class="form-control"> -->
-                                                <select name="voucherbayar">
-                                                    <?php foreach ($voucher as $v) : ?>
-                                                        <option value="<?=$v->id_voucher?>"><?=$v->nama_voucher ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                <!-- </div> -->
-                                                <p class="help-block text-danger"></p>
-                                                <h4>Pilih Metode Pembayaran</h4>
-                                                <select name="vouchermetod">
-                                                    <?php foreach ($ko as $i) : ?>
-                                                        <option value="<?=$i->id_pembayaran?>"><?=$i->nama_pembayaran ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                    <p class="help-block text-danger"></p>
-                                                    <h4>Masukkan Jumlah Uang Anda</h4>
-                                                    <input class="form-control" type="number" id="uanguser" name="uanguser" placeholder="nominal..">
-                                                    <p class="help-block text-danger"></p>
-                                                    <div>
-                                        <button class="btn" type="submit" id="submit">Submit</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
+            
+            
+            <!-- Page Header Start -->
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="img/IllustriousEducatedEastsiberianlaika-size_restricted.gif" alt="Carousel Image">
+                        <div class="carousel-caption">
+                            <h1 class="animated fadeInLeft">Admin Page</h1>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Contact End -->
+            <!-- Page Header End -->  
+
+
+            <!-- Blog Start -->
+            <div class="blog"id="contact">
+                <div class="container" >
+                    <div class="section-header text-center">
+                        <p>Game</p>
+                        <!-- <h2>Latest From Our Responders</h2> -->
+                    </div>
+        <main id="main">
+    <section class="inner-page">    
+    <div class="container table-responsive">
+        <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Game</th>
+          <th scope="col">Foto</th>
+          <th scope="col">Aksi</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php 
+            $count = 1;
+
+            //buat looping untuk menampilkan data sd selesai
+            foreach($game as $show) {
+            // $count++;
+            ?>
+
+            <tr>
+                <td scope="row"><?= $count ?></td>
+                <td><?= $show->nama_game; ?> </td> 
+                <td><?= $show->foto_game; ?> </td>
+                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_game) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                &nbsp;
+                <a href="<?= site_url('c_voucher/delete/' . $show->id_game)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
+            </tr>
+
+            <?php
+                //next record
+                $count++;
+            }
+        ?>
+        </tbody>
+        </table>
+    </div>
+</section>
+
+</main><!-- End #main -->
+            </div>
+            </div>
+            <!-- Blog End -->
+
+            <!-- Job Start -->
+            <div class="job"id="job">
+                <div class="container" >
+                    <div class="section-header text-center">
+                        <p >Voucher</p>
+                        <!-- <h2 >Latest From Our Applicants</h2> -->
+                    </div>
+                    <main id="main" >
+    <section class="inner-page">    
+    <div class="container table-responsive" >
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Nama</th>
+          <th scope="col">Harga</th>
+          <th scope="col">Game</th>
+          <th scope="col">Aksi</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php 
+            $count = 1;
+
+            //buat looping untuk menampilkan data sd selesai
+            foreach($voucher as $show) {
+            // $count++;
+            ?>
+
+            <tr>
+                <td scope="row"><?= $count ?></td>
+                <td><?= $show->nama_voucher; ?> </td> 
+                <td><?= $show->harga_voucher; ?> </td>
+                <td><?= $show->id_game; ?> </td>
+                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                &nbsp;
+                <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
+            </tr>
+
+            <?php
+                //next record
+                $count++;
+            }
+        ?>
+        </tbody>
+        </table>
+    </div>
+</section>
+</main>
+</div>
+</div>
+
+<div class="job"id="job">
+    <div class="container" >
+        <div class="section-header text-center">
+            <p >Pembayaran</p>
+            <!-- <h2 >Latest From Our Applicants</h2> -->
+            </div>
+                <main id="main" >
+            <section class="inner-page">    
+            <div class="container table-responsive" >
+            <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Aksi</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <?php 
+            $count = 1;
+
+            //buat looping untuk menampilkan data sd selesai
+            foreach($pembayaran as $show) {
+            // $count++;
+            ?>
+
+            <tr>
+                <td scope="row"><?= $count ?></td>
+                <td><?= $show->nama_pembayaran; ?> </td>
+                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_pembayaran) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                &nbsp;
+                <a href="<?= site_url('c_voucher/delete/' . $show->id_pembayaran)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
+            </tr>
+
+            <?php
+                //next record
+                $count++;
+            }
+            ?>
+            </tbody>
+            </table>
+            </div>
+            </section>
+        </main>
+    </div>
+</div>
+<!-- End #main -->
+
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">

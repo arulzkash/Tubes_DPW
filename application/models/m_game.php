@@ -7,6 +7,16 @@ class m_game extends CI_Model {
 		$this->load->view('v_home');
 	}
 
+    public function getAllPembayaran() {
+        $query = $this->db->query("select * from t_pembayaran");
+        return $query->result();
+    }
+
+    public function getAllStruk() {
+        $query = $this->db->query("select * from t_struk");
+        return $query->result();
+    }
+
     public function getAll(){
         $query = $this->db->query("select * from t_game");
         return $query->result();
@@ -24,5 +34,19 @@ class m_game extends CI_Model {
     public function getAllBayar() {
         $query = $this->db->query("select * from t_pembayaran");
         return $query->result();
+    }
+
+    public function editGame($data)
+    {
+        $id = $data["id_game"];
+        $nama = $data["nama_game"];
+        $foto = $data["foto_game"];
+
+        $query = $this->db->query("SELECT id_game FROM t_game WHERE id_game = '$id'");
+        $isExist = $query->result();
+        if (!empty($isExist)) {
+            $query = $this->db->query("UPDATE t_game SET nama_game = '$nama', foto = '$foto' WHERE id_game = '$id'");
+        }
+        return $this->db->affected_rows();
     }
 }

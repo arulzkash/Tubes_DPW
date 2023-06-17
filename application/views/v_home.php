@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other</a>
                                     <div class="dropdown-menu">
-                                        <a href="admin.php" class="dropdown-item">Admin Page</a>
+                                        <a href="<?php echo site_url('c_voucher/linkAdmin');?>" class="dropdown-item">Admin Page</a>
                                         <a href="job.php" class="dropdown-item">Job Vacancy</a>
                                     </div>
                                 </div>

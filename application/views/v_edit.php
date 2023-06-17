@@ -8,19 +8,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <head>
         <meta charset="utf-8">
         <title>SultanTopUp</title>
-        <script>
-        function validateForm() {
-            var nama = document.forms["myForm"]["namauser"].value;
-            var bayar = document.forms["myForm"]["voucherbayar"].value;
-            var metod = document.forms["myForm"]["vouchermetod"].value;
-            var uang = document.forms["myForm"]["uanguser"].value;
-
-            if (nama == "" || bayar == "" || metod == "" || uang == "") {
-                alert("Harap isi semua field!");
-                return false;
-            }
-        }
-    </script>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Construction Company Website Template" name="keywords">
         <meta content="Construction Company Website Template" name="description">
@@ -111,12 +98,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
                                 <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link active">Home</a>
+                                <!-- <a href="#games" class="nav-item nav-link">Games</a> -->
                                 <a href="#team" class="nav-item nav-link">Team</a>
                                 <a href="#contact" class="nav-item nav-link">Contact</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other</a>
                                     <div class="dropdown-menu">
-                                        <a href="admin.php" class="dropdown-item">Admin Page</a>
+                                        <a href="<?php echo site_url('c_voucher/linkAdmin');?>" class="dropdown-item">Admin Page</a>
                                         <a href="job.php" class="dropdown-item">Job Vacancy</a>
                                     </div>
                                 </div>
@@ -127,76 +115,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <!-- Nav Bar End -->
 
-            <!-- Contact Start -->
-            <div class="contact wow fadeInUp" id="contact">
-                <div class="container">
-                    <div class="section-header text-center">
-                        <p>Form Pembelian</p>
-                        <h2>Voucher <?= $data->nama_game ?></h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contact-info">
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                        <h2><?= $data->nama_game ?></h2>
-                                        
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                    <img src="<?=base_url('asset/img/'.$data->foto_game)?>" style="display: block;border-radius: 5%;border-color:white;margin-right:30px; width:300px;" border="2px" >
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <div class="contact-text">
-                                        <p style="text-align: justify;">Dapatkan <?= $data->nama_game ?> hanya dalam beberapa detik! Pilih jumlah yang di inginkan, pilih metode pembayaran yang paling disukai, dan dapatkan kode voucher dalam hitungan detik. <br><br>
+            <!-- Looking to join a team of talented individuals and work on exciting projects? Look no further! We're actively seeking passionate and driven individuals to join our dynamic team. Come be a part of our mission to innovate and make a difference in the world. Apply now and let's build the future together! -->
 
-Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kredivo, LinkAja, OVO, QRIS, ShopeePay, dan kartu kredit. Tanpa registrasi ataupun log-in!</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="contact-form">
-                                <div id="success"></div>
-                                
-                                
-                                <div class="container">
-                                    <form name="myForm" action="<?php echo site_url('C_Voucher/bayar'); ?>" onsubmit="return validateForm()" method="post" >
-                                        <h4>Masukkan Nama</h4>
-                                            <input class="form-control" type="text" id="namauser" name="namauser" placeholder="nama..">
-                                            <p class="help-block text-danger"></p>
-                                            <h4>Pilih Voucher</h4>
-                                            <!-- <div class="form-control"> -->
-                                                <select name="voucherbayar">
-                                                    <?php foreach ($voucher as $v) : ?>
-                                                        <option value="<?=$v->id_voucher?>"><?=$v->nama_voucher ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                <!-- </div> -->
-                                                <p class="help-block text-danger"></p>
-                                                <h4>Pilih Metode Pembayaran</h4>
-                                                <select name="vouchermetod">
-                                                    <?php foreach ($ko as $i) : ?>
-                                                        <option value="<?=$i->id_pembayaran?>"><?=$i->nama_pembayaran ?></option>
-                                                        <?php endforeach; ?>
-                                                    </select>
-                                                    <p class="help-block text-danger"></p>
-                                                    <h4>Masukkan Jumlah Uang Anda</h4>
-                                                    <input class="form-control" type="number" id="uanguser" name="uanguser" placeholder="nominal..">
-                                                    <p class="help-block text-danger"></p>
-                                                    <div>
-                                        <button class="btn" type="submit" id="submit">Submit</button>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Contact End -->
+        <form action="<?= site_url('c_voucher/editConfirm/')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
+        <input class="form-control" type="hidden" name="id" value="<?= $id?>">
+        <br />
+        <label for="user_type" class="form-label">Nama Game</label>
+        <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama Lengkap" value="<?= $nama?>" required> <br>
+        <br />
+        <label for="user_type" class="form-label">Foto Game</label>
+        <input class="form-control" type="text" name="foto" id="foto" placeholder="Nama Lengkap" value="<?= $foto?>" required> <br>
+    <br />
+    <br>
+    <div>
+        <button class="btn" type="submit" id="submit">Simpan</button>
+    </div>
+    <br>
+</form>
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">
@@ -269,3 +204,4 @@ Bayar pakai Codacash, Alfamart, Bank Transfer, Dana, DOKU, GoPay, Indomaret, Kre
         <script src="js/main.js"></script>
     </body>
 </html>
+
