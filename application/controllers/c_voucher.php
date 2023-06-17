@@ -59,7 +59,7 @@ class C_Voucher extends CI_Controller {
     $this->load->view('v_bayar', $data);
 }
 
-	public function linkEdit($id_game) {
+	public function linkEditGame($id_game) {
 		// Ambil data game berdasarkan $id_game dari model atau sumber data lainnya
 		$game = $this->m_game->getSingle($id_game); // Gantilah Model_game dengan model yang sesuai
 
@@ -82,10 +82,10 @@ class C_Voucher extends CI_Controller {
 			];
 		}
 
-		$this->load->view('v_edit', $data);
+		$this->load->view('v_editGame', $data);
 	}
 
-	public function editConfirm()
+	public function editConfirmGame()
 	{
 		$id = $this->input->post("id");
 		$nama = $this->input->post("nama");
@@ -108,7 +108,7 @@ class C_Voucher extends CI_Controller {
 		}
 	}
 	
-	public function delete($id) {
+	public function deleteGame($id) {
 		$result = $this->m_game->deleteGame($id); // Gantilah Model_game dengan model yang sesuai
 
 		if ($result) {
@@ -120,7 +120,7 @@ class C_Voucher extends CI_Controller {
 		}
 	}
 	
-	public function create() {
+	public function createGame() {
 		$id = $this->input->post('id');
         $nama = $this->input->post('nama');
 		$foto = $_FILES['foto']['name'];
@@ -134,6 +134,26 @@ class C_Voucher extends CI_Controller {
 		$success = $this->m_game->createGame($data);
 		if ($success > 0) {
 			move_uploaded_file($foto_tmp, $direktori);
+			redirect(site_url('c_voucher/linkAdmin'));
+		} 
+		else {
+			echo "Create Failed";
+		}
+	}
+
+	public function createVoucher() {
+		$id = $this->input->post('id');
+		$nama = $this->input->post('nama');
+		$harga = $this->input->post('harga');
+		$idv = $this->input->post('idv');
+		$data = [
+			"id" => $id,
+			"nama" => $nama,
+			"harga" => $harga,
+			"idv" => $idv
+		];
+		$success = $this->m_game->createVoucher($data);
+		if ($success > 0) {
 			redirect(site_url('c_voucher/linkAdmin'));
 		} 
 		else {

@@ -60,11 +60,19 @@ class m_game extends CI_Model {
     }
     
     public function createGame($data) {
-        $id = $data["id"];
         $nama = $data["nama"];
         $foto = $data["foto"];
         
         $query = $this->db->query("INSERT INTO t_game VALUES ('', '$nama', '$foto')"); 
+        return $this->db->affected_rows();
+    }
+
+    public function createVoucher($data) {
+        $nama = $data["nama"];
+        $harga = $data["harga"];
+        $idv = $data["idv"];
+        
+        $query = $this->db->query("INSERT INTO t_voucher VALUES ('', '$nama', '$harga', '$idv')"); 
         return $this->db->affected_rows();
     }
 }

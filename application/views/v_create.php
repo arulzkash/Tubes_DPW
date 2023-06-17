@@ -115,9 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <!-- Nav Bar End -->
 
-            <!-- Looking to join a team of talented individuals and work on exciting projects? Look no further! We're actively seeking passionate and driven individuals to join our dynamic team. Come be a part of our mission to innovate and make a difference in the world. Apply now and let's build the future together! -->
-
-        <form action="<?= site_url('c_voucher/create')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
+        <form action="<?= site_url('c_voucher/createGame')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
         <input class="form-control" type="hidden" name="id" value="<?//= $id?>">
         <br />
         <label for="user_type" class="form-label">Nama Game</label>

@@ -151,7 +151,7 @@
                 <td scope="row"><?= $count ?></td>
                 <td><?= $show->nama_game; ?> </td> 
                 <td><?= $show->foto_game; ?> </td>
-                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_game) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                <td><a href="<?= site_url('c_voucher/linkEditGame/' . $show->id_game) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
                 &nbsp;
                 <a href="<?= site_url('c_voucher/delete/' . $show->id_game) ?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
                 <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
@@ -172,24 +172,30 @@
             </div>
             <!-- Blog End -->
 
-            <!-- Job Start -->
-            <div class="job"id="job">
+            <!-- Blog Start -->
+            <div class="blog"id="contact">
                 <div class="container" >
                     <div class="section-header text-center">
-                        <p >Voucher</p>
-                        <!-- <h2 >Latest From Our Applicants</h2> -->
+                        <p>Voucher</p>
+                        <!-- <h2>Latest From Our Responders</h2> -->
+                        <!-- <p>Daftar <span>Menu</span></p> -->
+                        <a href="<?= site_url('c_voucher/linkCreate')?>" class="btn btn-success">
+                          + Tambah Data
+                          </a>
+                      </div>
                     </div>
-                    <main id="main" >
+                    <div class="section-header">
+        <main id="main">
     <section class="inner-page">    
-    <div class="container table-responsive" >
-    <table class="table table-dark table-striped">
+    <div class="container table-responsive">
+        <table class="table table-dark table-striped">
         <thead>
         <tr>
-          <th scope="col">No.</th>
-          <th scope="col">Nama</th>
-          <th scope="col">Harga</th>
-          <th scope="col">Game</th>
-          <th scope="col">Aksi</th>
+            <th scope="col">No.</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Harga</th>
+            <th scope="col">Game</th>
+            <th scope="col">Aksi</th>
         </tr>
         </thead>
 
@@ -199,83 +205,93 @@
 
             //buat looping untuk menampilkan data sd selesai
             foreach($voucher as $show) {
-            // $count++;
-            ?>
-
-            <tr>
-                <td scope="row"><?= $count ?></td>
-                <td><?= $show->nama_voucher; ?> </td> 
-                <td><?= $show->harga_voucher; ?> </td>
-                <td><?= $show->id_game; ?> </td>
-                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
-                &nbsp;
-                <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
-                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
-            </tr>
-
-            <?php
-                //next record
-                $count++;
-            }
+                // $count++;
+                ?>
+    
+                <tr>
+                    <td scope="row"><?= $count ?></td>
+                    <td><?= $show->nama_voucher; ?> </td> 
+                    <td><?= $show->harga_voucher; ?> </td>
+                    <td><?= $show->id_game; ?> </td>
+                    <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                    &nbsp;
+                    <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                    <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
+                </tr>
+    
+                <?php
+                    //next record
+                    $count++;
+                }
         ?>
         </tbody>
         </table>
     </div>
 </section>
-</main>
-</div>
-</div>
 
-<div class="job"id="job">
-    <div class="container" >
-        <div class="section-header text-center">
-            <p >Pembayaran</p>
-            <!-- <h2 >Latest From Our Applicants</h2> -->
+</main><!-- End #main -->
             </div>
-                <main id="main" >
-            <section class="inner-page">    
-            <div class="container table-responsive" >
-            <table class="table table-dark table-striped">
-            <thead>
-            <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Aksi</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <?php 
-            $count = 1;
-
-            //buat looping untuk menampilkan data sd selesai
-            foreach($pembayaran as $show) {
-            // $count++;
-            ?>
-
-            <tr>
-                <td scope="row"><?= $count ?></td>
-                <td><?= $show->nama_pembayaran; ?> </td>
-                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_pembayaran) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
-                &nbsp;
-                <a href="<?= site_url('c_voucher/delete/' . $show->id_pembayaran)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
-                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
-            </tr>
-
-            <?php
-                //next record
-                $count++;
-            }
-            ?>
-            </tbody>
-            </table>
             </div>
+            <!-- Blog End -->
+
+            <!-- Blog Start -->
+            <div class="blog"id="contact">
+                <div class="container" >
+                    <div class="section-header text-center">
+                        <p>Voucher</p>
+                        <!-- <h2>Latest From Our Responders</h2> -->
+                        <!-- <p>Daftar <span>Menu</span></p> -->
+                        <a href="<?= site_url('c_voucher/linkCreate')?>" class="btn btn-success">
+                          + Tambah Data
+                          </a>
+                      </div>
+                    </div>
+                    <div class="section-header">
+                    <main id="main">
+                <section class="inner-page">    
+                <div class="container table-responsive">
+                    <table class="table table-dark table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php 
+                        $count = 1;
+
+                        //buat looping untuk menampilkan data sd selesai
+                        foreach($pembayaran as $show) {
+                            // $count++;
+                            ?>
+                
+                            <tr>
+                                <td scope="row"><?= $count ?></td>
+                                <td><?= $show->nama_pembayaran; ?> </td>
+                                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_pembayaran) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                                &nbsp;
+                                <a href="<?= site_url('c_voucher/delete/' . $show->id_pembayaran)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
+                            </tr>
+                
+                            <?php
+                                //next record
+                                $count++;
+                            }
+                    ?>
+                    </tbody>
+                    </table>
+                </div>
             </section>
-        </main>
-    </div>
-</div>
-<!-- End #main -->
 
+            </main>
+            <!-- End #main -->
+            </div>
+            </div>
+            <!-- Blog End -->
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">
