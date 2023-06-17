@@ -14,6 +14,10 @@ class C_Voucher extends CI_Controller {
 		
 		$this->load->view('v_home', $temp);
 	}
+
+	public function linkCreate() {
+		$this->load->view('v_create');
+	}
 	
 	public function linkAdmin()
 	{
@@ -87,7 +91,7 @@ class C_Voucher extends CI_Controller {
 		$nama = $this->input->post("nama");
 		$foto = $_FILES['foto']['name'];
 		$foto_tmp = $_FILES['foto']['tmp_name'];
-
+		
 		$data = [
 			"id" => $id,
 			"nama" => $nama,
@@ -97,8 +101,6 @@ class C_Voucher extends CI_Controller {
 		$success = $this->m_game->editGame($data);
 		if ($success > 0) {
 			move_uploaded_file($foto_tmp, $direktori);
-			// move_uploaded_file($user_photo_tmp, $filePath);
-
 			redirect(site_url('c_voucher/linkAdmin'));
 		} 
 		else {
@@ -118,4 +120,24 @@ class C_Voucher extends CI_Controller {
 		}
 	}
 	
+	public function create() {
+		$id = $this->input->post('id');
+        $nama = $this->input->post('nama');
+		$foto = $_FILES['foto']['name'];
+		$foto_tmp = $_FILES['foto']['tmp_name'];
+		$data = [
+			"id" => $id,
+			"nama" => $nama,
+			"foto" => $foto
+		];
+		$direktori = 'asset/img/' . $foto;
+		$success = $this->m_game->createGame($data);
+		if ($success > 0) {
+			move_uploaded_file($foto_tmp, $direktori);
+			redirect(site_url('c_voucher/linkAdmin'));
+		} 
+		else {
+			echo "Create Failed";
+		}
+	}
 }

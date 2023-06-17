@@ -41,7 +41,7 @@ class m_game extends CI_Model {
         $id = $data["id"];
         $nama = $data["nama"];
         $foto = $data["foto"];
-
+        
         $query = $this->db->query("SELECT id_game FROM t_game WHERE id_game = '$id'");
         $isExist = $query->result();
         if (!empty($isExist)) {
@@ -56,6 +56,15 @@ class m_game extends CI_Model {
         if (!empty($isExist)) {
             $query = $this->db->query("DELETE FROM t_game WHERE id_game = '$id'");
         }
+        return $this->db->affected_rows();
+    }
+    
+    public function createGame($data) {
+        $id = $data["id"];
+        $nama = $data["nama"];
+        $foto = $data["foto"];
+        
+        $query = $this->db->query("INSERT INTO t_game VALUES ('', '$nama', '$foto')"); 
         return $this->db->affected_rows();
     }
 }
