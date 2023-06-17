@@ -147,7 +147,7 @@
                 <td><?= $show->foto_game; ?> </td>
                 <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_game) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
                 &nbsp;
-                <a href="<?= site_url('c_voucher/delete/' . $show->id_game)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
+                <a href="<?= site_url('c_voucher/delete/' . $show->id_game) ?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
                 <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
             </tr>
 

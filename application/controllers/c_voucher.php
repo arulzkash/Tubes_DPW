@@ -55,54 +55,67 @@ class C_Voucher extends CI_Controller {
     $this->load->view('v_bayar', $data);
 }
 
-public function linkEdit($id_game) {
-    // Ambil data game berdasarkan $id_game dari model atau sumber data lainnya
-    $game = $this->m_game->getSingle($id_game); // Gantilah Model_game dengan model yang sesuai
+	public function linkEdit($id_game) {
+		// Ambil data game berdasarkan $id_game dari model atau sumber data lainnya
+		$game = $this->m_game->getSingle($id_game); // Gantilah Model_game dengan model yang sesuai
 
-    if ($game) {
-        // Jika game ditemukan, ambil nilai nama dan foto
-        $nama = $game->nama_game;
-        $foto = $game->foto_game;
+		if ($game) {
+			// Jika game ditemukan, ambil nilai nama dan foto
+			$nama = $game->nama_game;
+			$foto = $game->foto_game;
 
-        $data = [
-            "id" => $id_game,
-            "nama" => $nama,
-            "foto" => $foto
-        ];
-    } else {
-        // Jika game tidak ditemukan, berikan nilai default
-        $data = [
-            "id" => $id_game,
-            "nama" => "",
-            "foto" => ""
-        ];
-    }
+			$data = [
+				"id" => $id_game,
+				"nama" => $nama,
+				"foto" => $foto
+			];
+		} else {
+			// Jika game tidak ditemukan, berikan nilai default
+			$data = [
+				"id" => $id_game,
+				"nama" => "",
+				"foto" => ""
+			];
+		}
 
-    $this->load->view('v_edit', $data);
-}
+		$this->load->view('v_edit', $data);
+	}
 
-public function editConfirm()
-{
-	$id = $this->input->post("id");
-	$nama = $this->input->post("nama");
-	$foto = $_FILES['foto']['name'];
-	$foto_tmp = $_FILES['foto']['tmp_name'];
+	public function editConfirm()
+	{
+		$id = $this->input->post("id");
+		$nama = $this->input->post("nama");
+		$foto = $_FILES['foto']['name'];
+		$foto_tmp = $_FILES['foto']['tmp_name'];
 
-	$data = [
-		"id" => $id,
-		"nama" => $nama,
-		"foto" => $foto
-	];
-	$direktori = 'asset/img/' . $foto;
-	$success = $this->m_game->editGame($data);
-	if ($success > 0) {
-		move_uploaded_file($foto_tmp, $direktori);
-		// move_uploaded_file($user_photo_tmp, $filePath);
+		$data = [
+			"id" => $id,
+			"nama" => $nama,
+			"foto" => $foto
+		];
+		$direktori = 'asset/img/' . $foto;
+		$success = $this->m_game->editGame($data);
+		if ($success > 0) {
+			move_uploaded_file($foto_tmp, $direktori);
+			// move_uploaded_file($user_photo_tmp, $filePath);
 
-		redirect(site_url('c_voucher/index'));
-	} 
-	// else {
-	// 	echo "Edit Failed";
-	// }
-}
+			redirect(site_url('c_voucher/linkAdmin'));
+		} 
+		else {
+			echo "Edit Failed";
+		}
+	}
+	
+	public function delete($id) {
+		$result = $this->m_game->deleteGame($id); // Gantilah Model_game dengan model yang sesuai
+
+		if ($result) {
+			// Jika delete berhasil
+			redirect('c_voucher/linkAdmin'); // Redirect ke halaman admin atau halaman lain yang sesuai
+		} else {
+			// Jika delete gagal
+			echo "Delete gagal"; // Tampilkan pesan error atau ambil tindakan lain yang sesuai
+		}
+	}
+	
 }

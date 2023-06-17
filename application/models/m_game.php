@@ -49,4 +49,13 @@ class m_game extends CI_Model {
         }
         return $this->db->affected_rows();
     }
+    
+    public function deleteGame($id) {
+        $query = $this->db->query("SELECT id_game FROM t_game WHERE id_game = '$id'");
+        $isExist = $query->result();
+        if (!empty($isExist)) {
+            $query = $this->db->query("DELETE FROM t_game WHERE id_game = '$id'");
+        }
+        return $this->db->affected_rows();
+    }
 }
