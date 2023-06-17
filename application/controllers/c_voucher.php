@@ -81,7 +81,28 @@ public function linkEdit($id_game) {
     $this->load->view('v_edit', $data);
 }
 
-	public function edit() {
+public function editConfirm()
+{
+	$id = $this->input->post("id");
+	$nama = $this->input->post("nama");
+	$foto = $_FILES['foto']['name'];
+	$foto_tmp = $_FILES['foto']['tmp_name'];
 
-	}
+	$data = [
+		"id" => $id,
+		"nama" => $nama,
+		"foto" => $foto
+	];
+	$direktori = 'asset/img/' . $foto;
+	$success = $this->m_game->editGame($data);
+	if ($success > 0) {
+		move_uploaded_file($foto_tmp, $direktori);
+		// move_uploaded_file($user_photo_tmp, $filePath);
+
+		redirect(site_url('c_voucher/index'));
+	} 
+	// else {
+	// 	echo "Edit Failed";
+	// }
+}
 }

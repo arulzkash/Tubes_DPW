@@ -41,7 +41,6 @@
                             <div class="logo">
                                 <a href="index.php">
                                     <h2 style="font-size: 36px; margin:auto;">SultanTopUp</h2>
-                                    <!-- <img src="img/logo.jpg" alt="Logo"> -->
                                 </a>
                             </div>
                         </div>

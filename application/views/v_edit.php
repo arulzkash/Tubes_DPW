@@ -117,21 +117,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <!-- Looking to join a team of talented individuals and work on exciting projects? Look no further! We're actively seeking passionate and driven individuals to join our dynamic team. Come be a part of our mission to innovate and make a difference in the world. Apply now and let's build the future together! -->
 
-        <form action="<?= site_url('c_voucher/editConfirm/')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
+        <form action="<?= site_url('c_voucher/editConfirm')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
         <input class="form-control" type="hidden" name="id" value="<?= $id?>">
         <br />
         <label for="user_type" class="form-label">Nama Game</label>
         <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama Lengkap" value="<?= $nama?>" required> <br>
         <br />
-        <label for="user_type" class="form-label">Foto Game</label>
-        <input class="form-control" type="text" name="foto" id="foto" placeholder="Nama Lengkap" value="<?= $foto?>" required> <br>
-    <br />
-    <br>
-    <div>
-        <button class="btn" type="submit" id="submit">Simpan</button>
-    </div>
-    <br>
-</form>
+        <label class="form-label" for="Foto Game">Foto</label><br>
+        <img src="<?=base_url('asset/img/'.$foto)?>" alt="">
+        <input class="form-control" type="file" name="foto" id="foto" accept="image/*">
+        <br />
+            <br>
+            <div>
+                <button class="btn" type="submit" id="submit">Simpan</button>
+            </div>
+            <br>
+        </form>
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">

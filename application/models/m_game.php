@@ -38,14 +38,14 @@ class m_game extends CI_Model {
 
     public function editGame($data)
     {
-        $id = $data["id_game"];
-        $nama = $data["nama_game"];
-        $foto = $data["foto_game"];
+        $id = $data["id"];
+        $nama = $data["nama"];
+        $foto = $data["foto"];
 
         $query = $this->db->query("SELECT id_game FROM t_game WHERE id_game = '$id'");
         $isExist = $query->result();
         if (!empty($isExist)) {
-            $query = $this->db->query("UPDATE t_game SET nama_game = '$nama', foto = '$foto' WHERE id_game = '$id'");
+            $query = $this->db->query("UPDATE t_game SET nama_game = '$nama', foto_game = '$foto' WHERE id_game = '$id'");
         }
         return $this->db->affected_rows();
     }
