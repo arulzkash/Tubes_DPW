@@ -16,7 +16,7 @@ class C_Voucher extends CI_Controller {
 	}
 
 	public function linkCreateGame() {
-		$this->load->view('v_create');
+		$this->load->view('v_createGame');
 	}
 
 	public function linkCreateVoucher() {
@@ -84,8 +84,28 @@ class C_Voucher extends CI_Controller {
 		$this->load->view('v_editGame', $data);
 	}
 
-	public function editConfirmGame()
-	{
+	public function linkEditVoucher($id_voucher) {
+		// Ambil data game berdasarkan $id_game dari model atau sumber data lainnya
+		$voucher = $this->m_voucher->getSingle($id_voucher); // Gantilah Model_game dengan model yang sesuai
+
+		if ($voucher) {
+			// Jika game ditemukan, ambil nilai nama dan foto
+			$nama = $voucher->nama_voucher;
+			$harga = $voucher->harga_voucher;
+			$id_game = $voucher->id_game;
+
+			$data = [
+				"id" => $id_voucher,
+				"nama" => $nama,
+				"harga" => $harga,
+				"id_game" => $id_game
+			];
+		}
+
+		$this->load->view('v_editVoucher', $data);
+	}
+
+	public function editConfirmGame() {
 		$id = $this->input->post("id");
 		$nama = $this->input->post("nama");
 		$foto = $_FILES['foto']['name'];

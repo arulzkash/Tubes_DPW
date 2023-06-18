@@ -34,6 +34,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		<!--Custom Css -->
 		<link rel="stylesheet" href="<?= base_url('asset/css/style.css') ?>">
+        <style>
+            .card {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: all .25s ease;
+                backface-visibility: hidden;
+            }
+
+            .card::after {
+                position: absolute;
+                background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,66,112,1)100%);
+                z-index: 20;
+                transition: all .25s ease;
+            }
+        </style>
     </head>
 
     <body>

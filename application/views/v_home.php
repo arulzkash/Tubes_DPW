@@ -58,8 +58,8 @@
 						?>
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
                             <div class="blog-item">
-                                <div class="blog-img">
-                                    <img src="<?= base_url('asset/img/'.$row->foto_game ) ?>" style="min-height: 235px; max-height: 235px; width: 350px;" alt="Image">
+                                <div  class="blog-img card">
+                                    <img  src="<?= base_url('asset/img/'.$row->foto_game ) ?>" style="min-height: 235px; max-height: 235px; width: 350px;" alt="Image">
                                 </div>
                                 <div class="blog-title">
                                     <h3><a href="<?php echo site_url('C_Voucher/tampilBayar/'.$row->id_game);?>"><?=$row->nama_game ?></a></h3>

@@ -115,7 +115,7 @@
                     <td><?= $show->nama_voucher; ?> </td> 
                     <td><?= $show->harga_voucher; ?> </td>
                     <td><?= $show->id_game; ?> </td>
-                    <td><a href="<?= site_url('c_voucher/linkEditGame/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                    <td><a href="<?= site_url('c_voucher/linkEditVoucher/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
                     &nbsp;
                     <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
                     <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
@@ -140,9 +140,7 @@
             <div class="blog"id="contact">
                 <div class="container" >
                     <div class="section-header text-center">
-                        <p>Voucher</p>
-                        <!-- <h2>Latest From Our Responders</h2> -->
-                        <!-- <p>Daftar <span>Menu</span></p> -->
+                        <p>Pembayaran</p>
                         <a href="<?= site_url('c_voucher/linkCreate')?>" class="btn btn-success">
                           + Tambah Data
                           </a>
@@ -169,7 +167,6 @@
                         foreach($pembayaran as $show) {
                             // $count++;
                             ?>
-                
                             <tr>
                                 <td scope="row"><?= $count ?></td>
                                 <td><?= $show->nama_pembayaran; ?> </td>
@@ -178,7 +175,6 @@
                                 <a href="<?= site_url('c_voucher/delete/' . $show->id_pembayaran)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
                                 <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
                             </tr>
-                
                             <?php
                                 //next record
                                 $count++;

@@ -49,6 +49,21 @@ class m_game extends CI_Model {
         }
         return $this->db->affected_rows();
     }
+
+    public function editVoucher($data)
+    {
+        $id = $data["id"];
+        $nama = $data["nama"];
+        $harga = $data["harga"];
+        $id_game = $data["id_game"];
+        
+        $query = $this->db->query("SELECT id_voucher FROM t_voucher WHERE id_voucher = '$id'");
+        $isExist = $query->result();
+        if (!empty($isExist)) {
+            $query = $this->db->query("UPDATE t_voucher SET nama_voucher = '$nama', harga_voucher = '$harga', id_game = '$id_game'  WHERE id_voucher = '$id'");
+        }
+        return $this->db->affected_rows();
+    }
     
     public function deleteGame($id) {
         $query = $this->db->query("SELECT id_game FROM t_game WHERE id_game = '$id'");
