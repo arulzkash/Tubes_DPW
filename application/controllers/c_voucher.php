@@ -79,13 +79,6 @@ class C_Voucher extends CI_Controller {
 				"nama" => $nama,
 				"foto" => $foto
 			];
-		} else {
-			// Jika game tidak ditemukan, berikan nilai default
-			$data = [
-				"id" => $id_game,
-				"nama" => "",
-				"foto" => ""
-			];
 		}
 
 		$this->load->view('v_editGame', $data);

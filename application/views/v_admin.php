@@ -213,7 +213,7 @@
                     <td><?= $show->nama_voucher; ?> </td> 
                     <td><?= $show->harga_voucher; ?> </td>
                     <td><?= $show->id_game; ?> </td>
-                    <td><a href="<?= site_url('c_voucher/linkEditVoucher/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
+                    <td><a href="<?= site_url('c_voucher/linkEditGame/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
                     &nbsp;
                     <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
                     <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
