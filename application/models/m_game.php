@@ -58,6 +58,24 @@ class m_game extends CI_Model {
         }
         return $this->db->affected_rows();
     }
+
+    public function deleteVoucher($id) {
+        $query = $this->db->query("SELECT id_voucher FROM t_voucher WHERE id_voucher = '$id'");
+        $isExist = $query->result();
+        if (!empty($isExist)) {
+            $query = $this->db->query("DELETE FROM t_voucher WHERE id_voucher = '$id'");
+        }
+        return $this->db->affected_rows();
+    }
+
+    public function deletePembayaran($id) {
+        $query = $this->db->query("SELECT id_pembayaran FROM t_pembayaran WHERE id_pembayaran = '$id'");
+        $isExist = $query->result();
+        if (!empty($isExist)) {
+            $query = $this->db->query("DELETE FROM t_pembayaran WHERE id_pembayaran = '$id'");
+        }
+        return $this->db->affected_rows();
+    }
     
     public function createGame($data) {
         $nama = $data["nama"];
@@ -70,9 +88,9 @@ class m_game extends CI_Model {
     public function createVoucher($data) {
         $nama = $data["nama"];
         $harga = $data["harga"];
-        $idv = $data["idv"];
+        $id_game = $data["id_game"];
         
-        $query = $this->db->query("INSERT INTO t_voucher VALUES ('', '$nama', '$harga', '$idv')"); 
+        $query = $this->db->query("INSERT INTO t_voucher VALUES ('', '$nama', '$harga', '$id_game')"); 
         return $this->db->affected_rows();
     }
 }

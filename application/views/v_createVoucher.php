@@ -1,3 +1,8 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,8 +35,10 @@
 		<!--Custom Css -->
 		<link rel="stylesheet" href="<?= base_url('asset/css/style.css') ?>">
     </head>
-    
+
     <body>
+
+    
         <div class="wrapper">
             <!-- Top Bar Start -->
             <div class="top-bar">
@@ -39,8 +46,9 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-12">
                             <div class="logo">
-                                <a href="index.php">
-                                    <h2 style="font-size: 36px; margin:auto;">SultanTopUp</h2>
+                                <a href="index.html">
+                                    <h2 style="font-size: 36px;">SultanTopUp</h2>
+                                    <!-- <img src="img/logo.jpg" alt="Logo"> -->
                                 </a>
                             </div>
                         </div>
@@ -76,6 +84,8 @@
             </div>
             <!-- Top Bar End -->
 
+	
+
             <!-- Nav Bar Start -->
             <div class="nav-bar">
                 <div class="container-fluid">
@@ -87,211 +97,52 @@
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
-                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link">Home</a>
+                                <a href="<?php echo site_url('c_voucher/index');?>" class="nav-item nav-link active">Home</a>
+                                <!-- <a href="#games" class="nav-item nav-link">Games</a> -->
+                                <a href="#team" class="nav-item nav-link">Team</a>
                                 <a href="#contact" class="nav-item nav-link">Contact</a>
-                                <a href="#job" class="nav-item nav-link">Job Apply</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Other</a>
+                                    <div class="dropdown-menu">
+                                        <a href="<?php echo site_url('c_voucher/linkAdmin');?>" class="dropdown-item">Admin Page</a>
+                                        <a href="job.php" class="dropdown-item">Job Vacancy</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
             <!-- Nav Bar End -->
-            
-            
-            <!-- Page Header Start -->
-            <div id="carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="img/IllustriousEducatedEastsiberianlaika-size_restricted.gif" alt="Carousel Image">
-                        <div class="carousel-caption">
-                            <h1 class="animated fadeInLeft">Admin Page</h1>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page Header End -->  
 
-
-            <!-- Blog Start -->
-            <div class="blog"id="contact">
-                <div class="container" >
-                    <div class="section-header text-center">
-                        <p>Game</p>
-                        <!-- <h2>Latest From Our Responders</h2> -->
-                        <!-- <p>Daftar <span>Menu</span></p> -->
-                        <a href="<?= site_url('c_voucher/linkCreateGame')?>" class="btn btn-success">
-                          + Tambah Data
-                          </a>
-                      </div>
-                    </div>
-                    <div class="section-header">
-        <main id="main">
-    <section class="inner-page">    
-    <div class="container table-responsive">
-        <table class="table table-dark table-striped">
-        <thead>
-        <tr>
-          <th scope="col">No.</th>
-          <th scope="col">Game</th>
-          <th scope="col">Foto</th>
-          <th scope="col">Aksi</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php 
-            $count = 1;
-
-            //buat looping untuk menampilkan data sd selesai
-            foreach($game as $show) {
-            // $count++;
-            ?>
-
-            <tr>
-                <td scope="row"><?= $count ?></td>
-                <td><?= $show->nama_game; ?> </td> 
-                <td><?= $show->foto_game; ?> </td>
-                <td><a href="<?= site_url('c_voucher/linkEditGame/' . $show->id_game) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
-                &nbsp;
-                <a href="<?= site_url('c_voucher/delete/' . $show->id_game) ?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
-                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
-            </tr>
-
+        <form action="<?= site_url('c_voucher/createVoucher')?>" method="POST" id="registrationForm" enctype="multipart/form-data">
+        <input class="form-control" type="hidden" name="id" value="<?//= $id?>">
+        <br />
+        <label for="user_type" class="form-label">Nama Voucher</label>
+        <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama Game" value="" required> <br>
+        <br />
+        <label for="user_type" class="form-label">Harga</label>
+        <input class="form-control" type="text" name="harga" id="harga" placeholder="Harga" value="" required> <br>
+        <br />
+        <label for="id_game">Untuk Game</label>
+        <select name="id_game" id="id_game">
             <?php
-                //next record
-                $count++;
-            }
-        ?>
-        </tbody>
-        </table>
-    </div>
-</section>
-
-</main><!-- End #main -->
-            </div>
-            </div>
-            <!-- Blog End -->
-
-            <!-- Blog Start -->
-            <div class="blog"id="contact">
-                <div class="container" >
-                    <div class="section-header text-center">
-                        <p>Voucher</p>
-                        <!-- <h2>Latest From Our Responders</h2> -->
-                        <!-- <p>Daftar <span>Menu</span></p> -->
-                        <a href="<?= site_url('c_voucher/linkCreateVoucher')?>" class="btn btn-success">
-                          + Tambah Data
-                          </a>
-                      </div>
-                    </div>
-                    <div class="section-header">
-        <main id="main">
-    <section class="inner-page">    
-    <div class="container table-responsive">
-        <table class="table table-dark table-striped">
-        <thead>
-        <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Harga</th>
-            <th scope="col">Game</th>
-            <th scope="col">Aksi</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php 
-            $count = 1;
-
-            //buat looping untuk menampilkan data sd selesai
-            foreach($voucher as $show) {
-                // $count++;
+            $count = 0;
+            foreach($game as $i) {
+                $count = $count + 1;
                 ?>
-    
-                <tr>
-                    <td scope="row"><?= $count ?></td>
-                    <td><?= $show->nama_voucher; ?> </td> 
-                    <td><?= $show->harga_voucher; ?> </td>
-                    <td><?= $show->id_game; ?> </td>
-                    <td><a href="<?= site_url('c_voucher/linkEditVoucher/' . $show->id_voucher) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
-                    &nbsp;
-                    <a href="<?= site_url('c_voucher/delete/' . $show->id_voucher)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
-                    <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
-                </tr>
-    
-                <?php
-                    //next record
-                    $count++;
-                }
+            <option value="<?= $i->id_game?>"><?=$i->nama_game?></option>
+        <?php
+        }
         ?>
-        </tbody>
-        </table>
-    </div>
-</section>
-
-</main><!-- End #main -->
+        </select>
+        <br>
+            <br>
+            <div>
+                <button class="btn" type="submit" id="submit">Simpan</button>
             </div>
-            </div>
-            <!-- Blog End -->
-
-            <!-- Blog Start -->
-            <div class="blog"id="contact">
-                <div class="container" >
-                    <div class="section-header text-center">
-                        <p>Voucher</p>
-                        <!-- <h2>Latest From Our Responders</h2> -->
-                        <!-- <p>Daftar <span>Menu</span></p> -->
-                        <a href="<?= site_url('c_voucher/linkCreate')?>" class="btn btn-success">
-                          + Tambah Data
-                          </a>
-                      </div>
-                    </div>
-                    <div class="section-header">
-                    <main id="main">
-                <section class="inner-page">    
-                <div class="container table-responsive">
-                    <table class="table table-dark table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <?php 
-                        $count = 1;
-
-                        //buat looping untuk menampilkan data sd selesai
-                        foreach($pembayaran as $show) {
-                            // $count++;
-                            ?>
-                
-                            <tr>
-                                <td scope="row"><?= $count ?></td>
-                                <td><?= $show->nama_pembayaran; ?> </td>
-                                <td><a href="<?= site_url('c_voucher/linkEdit/' . $show->id_pembayaran) ?>" class="link-warning"><i class="bi bi-pencil-square">Edit</i></a>
-                                &nbsp;
-                                <a href="<?= site_url('c_voucher/delete/' . $show->id_pembayaran)?>" onclick="return confirm('Yakin Hapus?')"><i class="bi bi-trash3">Delete</i></a></td>
-                                <!-- <td class="text-justify"><?//= $show['message_contact'] ?> </td> -->
-                            </tr>
-                
-                            <?php
-                                //next record
-                                $count++;
-                            }
-                    ?>
-                    </tbody>
-                    </table>
-                </div>
-            </section>
-
-            </main>
-            <!-- End #main -->
-            </div>
-            </div>
-            <!-- Blog End -->
+            <br>
+        </form>
 
             <!-- Footer Start -->
             <div class="footer wow fadeIn" data-wow-delay="0.3s">
@@ -364,3 +215,4 @@
         <script src="js/main.js"></script>
     </body>
 </html>
+

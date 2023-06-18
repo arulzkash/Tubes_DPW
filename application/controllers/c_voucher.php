@@ -15,8 +15,14 @@ class C_Voucher extends CI_Controller {
 		$this->load->view('v_home', $temp);
 	}
 
-	public function linkCreate() {
+	public function linkCreateGame() {
 		$this->load->view('v_create');
+	}
+
+	public function linkCreateVoucher() {
+		$dy = $this->m_game->getAll();
+		$data = ["game" => $dy];
+		$this->load->view('v_createVoucher',$data);
 	}
 	
 	public function linkAdmin()
@@ -108,13 +114,22 @@ class C_Voucher extends CI_Controller {
 		}
 	}
 	
-	public function deleteGame($id) {
+	public function delete($id) {
 		$result = $this->m_game->deleteGame($id); // Gantilah Model_game dengan model yang sesuai
+		$result2 = $this->m_game->deleteVoucher($id);
+		$result3 = $this->m_game->deletePembayaran($id);
 
 		if ($result) {
 			// Jika delete berhasil
 			redirect('c_voucher/linkAdmin'); // Redirect ke halaman admin atau halaman lain yang sesuai
-		} else {
+		}
+		else if ($result2) {
+			redirect('c_voucher/linkAdmin'); // Redirect ke halaman admin atau halaman lain yang sesuai
+		} 
+		else if ($result3) {
+			redirect('c_voucher/linkAdmin'); // Redirect ke halaman admin atau halaman lain yang sesuai
+		}
+		else {
 			// Jika delete gagal
 			echo "Delete gagal"; // Tampilkan pesan error atau ambil tindakan lain yang sesuai
 		}
@@ -145,12 +160,12 @@ class C_Voucher extends CI_Controller {
 		$id = $this->input->post('id');
 		$nama = $this->input->post('nama');
 		$harga = $this->input->post('harga');
-		$idv = $this->input->post('idv');
+		$id_game = $this->input->post('id_game');
 		$data = [
 			"id" => $id,
 			"nama" => $nama,
 			"harga" => $harga,
-			"idv" => $idv
+			"id_game" => $id_game
 		];
 		$success = $this->m_game->createVoucher($data);
 		if ($success > 0) {
